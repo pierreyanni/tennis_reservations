@@ -15,18 +15,20 @@ A simple application to quickly open the Montreal tennis court reservation page 
 
 - Python 3.x
 - tkinter (Python GUI library)
-- WSL (Windows Subsystem for Linux) if using Windows
+- WSL (Windows Subsystem for Linux)
 
 ### Setup
 
-1. Install Python dependencies:
+1. Install Python dependencies in WSL:
 ```bash
-# On Ubuntu/WSL:
 sudo apt-get update
 sudo apt-get install python3-tk
 ```
 
-2. Clone or download this repository
+2. Clone or download this repository to your WSL home directory:
+```bash
+git clone <repository-url> ~/projects/tennis_reservations
+```
 
 ## Usage
 
@@ -57,39 +59,49 @@ Arguments:
 2. Start time (can be just the hour or HH:MM)
 3. End time (optional, defaults to 1 hour after start time)
 
-### Windows Shortcut
+### Windows Shortcut Setup
 
-1. Create a shortcut on your desktop
-2. Set the target to:
+1. Right-click on your Windows desktop
+2. Select "New" > "Shortcut"
+3. In the location field, paste:
 ```
 C:\Windows\System32\wsl.exe python3 /home/pyanni/projects/tennis_reservations/tennis_gui.py
 ```
+4. Click "Next"
+5. Name it "Tennis Reservation"
+6. Click "Finish"
+7. (Optional) Right-click the shortcut, select "Properties" > "Change Icon" to add a custom icon
+
+### Using the Windows Shortcut
+
+1. Double-click the "Tennis Reservation" shortcut on your desktop
+2. The GUI application will open in WSL
+3. Fill in your desired date and time
+4. Click "Open Reservation Page"
 
 ## Project Structure
 
 - `tennis_gui.py` - GUI application
 - `open_tennis_url.py` - Command-line interface
-- `tennis_reservation.sh` - Shell script for Linux/WSL
-- `tennis_reservation.bat` - Batch file for Windows
+- `README.md` - Documentation
 
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Tkinter not found**
-   - Solution: Install python3-tk package
+   - Solution: Install python3-tk package in WSL
    ```bash
    sudo apt-get install python3-tk
    ```
 
 2. **WSL path issues**
-   - Make sure to use the correct path to your Python files in WSL
+   - Make sure the repository is in the correct WSL directory
+   - Update the shortcut path if you moved the repository
 
-3. **Permission denied**
-   - Run scripts with appropriate permissions
-   ```bash
-   chmod +x tennis_reservation.sh
-   ```
+3. **Shortcut not working**
+   - Verify the WSL path in the shortcut properties
+   - Make sure WSL is properly installed and configured
 
 ## Contributing
 
