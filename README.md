@@ -9,26 +9,67 @@ A simple application to quickly open the Montreal tennis court reservation page 
 - Automatic end time calculation (1 hour after start time)
 - Windows shortcut support
 
-## Installation
+## Getting Started
 
 ### Prerequisites
 
-- Python 3.x
-- tkinter (Python GUI library)
-- WSL (Windows Subsystem for Linux)
+- Windows 10 or 11
+- WSL (Windows Subsystem for Linux) installed
+- Python 3.x installed in WSL
 
-### Setup
+### Installation from GitHub
 
-1. Install Python dependencies in WSL:
-```bash
-sudo apt-get update
-sudo apt-get install python3-tk
-```
+1. **Install WSL (if not already installed)**
+   - Open PowerShell as Administrator and run:
+   ```powershell
+   wsl --install
+   ```
+   - Restart your computer when prompted
 
-2. Clone or download this repository to your WSL home directory:
-```bash
-git clone <repository-url> ~/projects/tennis_reservations
-```
+2. **Clone the repository**
+   - Open WSL terminal
+   - Navigate to your desired directory:
+   ```bash
+   cd ~/projects
+   ```
+   - Clone the repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/tennis-reservations.git
+   cd tennis-reservations
+   ```
+
+3. **Set up Python virtual environment**
+   ```bash
+   # Install virtualenv if not already installed
+   sudo apt-get install python3-venv
+
+   # Create and activate virtual environment
+   python3 -m venv venv
+   source venv/bin/activate
+
+   # Install Python dependencies
+   sudo apt-get install python3-tk
+   ```
+
+4. **Create Windows shortcut**
+   - Right-click on your Windows desktop
+   - Select "New" > "Shortcut"
+   - In the location field, paste (adjust the path to match your WSL username):
+   ```
+   C:\Windows\System32\wsl.exe bash -c "cd /home/YOUR_WSL_USERNAME/projects/tennis-reservations && source venv/bin/activate && python3 tennis_gui.py"
+   ```
+   - Click "Next"
+   - Name it "Tennis Reservation"
+   - Click "Finish"
+
+### Verifying Installation
+
+1. Double-click the "Tennis Reservation" shortcut on your desktop
+2. The GUI should open with:
+   - Today's date pre-filled
+   - Start time field (default: 9)
+   - Optional end time field
+3. Try entering a date and time to verify it opens the reservation page
 
 ## Usage
 
@@ -36,6 +77,8 @@ git clone <repository-url> ~/projects/tennis_reservations
 
 1. Run the GUI application:
 ```bash
+# Make sure you're in the virtual environment
+source venv/bin/activate
 python3 tennis_gui.py
 ```
 
@@ -51,6 +94,8 @@ python3 tennis_gui.py
 You can also use the command-line version:
 
 ```bash
+# Make sure you're in the virtual environment
+source venv/bin/activate
 python3 open_tennis_url.py 2024-03-21 9 10
 ```
 
@@ -59,49 +104,37 @@ Arguments:
 2. Start time (can be just the hour or HH:MM)
 3. End time (optional, defaults to 1 hour after start time)
 
-### Windows Shortcut Setup
-
-1. Right-click on your Windows desktop
-2. Select "New" > "Shortcut"
-3. In the location field, paste:
-```
-C:\Windows\System32\wsl.exe python3 /home/pyanni/projects/tennis_reservations/tennis_gui.py
-```
-4. Click "Next"
-5. Name it "Tennis Reservation"
-6. Click "Finish"
-7. (Optional) Right-click the shortcut, select "Properties" > "Change Icon" to add a custom icon
-
-### Using the Windows Shortcut
-
-1. Double-click the "Tennis Reservation" shortcut on your desktop
-2. The GUI application will open in WSL
-3. Fill in your desired date and time
-4. Click "Open Reservation Page"
-
-## Project Structure
-
-- `tennis_gui.py` - GUI application
-- `open_tennis_url.py` - Command-line interface
-- `README.md` - Documentation
-
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Tkinter not found**
+1. **WSL not installed**
+   - Follow the WSL installation steps above
+   - Make sure to restart your computer after installation
+
+2. **Virtual environment issues**
+   - Make sure you've activated the virtual environment before running the script
+   - If you get "command not found" errors, try reactivating the virtual environment:
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. **Tkinter not found**
    - Solution: Install python3-tk package in WSL
    ```bash
    sudo apt-get install python3-tk
    ```
 
-2. **WSL path issues**
-   - Make sure the repository is in the correct WSL directory
-   - Update the shortcut path if you moved the repository
+4. **Shortcut not working**
+   - Verify the WSL path in the shortcut properties matches your setup
+   - Make sure you used the correct WSL username in the path
+   - Check that WSL is properly installed and configured
+   - Ensure the virtual environment is properly set up
 
-3. **Shortcut not working**
-   - Verify the WSL path in the shortcut properties
-   - Make sure WSL is properly installed and configured
+5. **Repository not found**
+   - Make sure you have the correct repository URL
+   - Verify your internet connection
+   - Check that you have permission to access the repository
 
 ## Contributing
 
